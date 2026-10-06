@@ -85,5 +85,6 @@ h.innerHTML=words.map(function(w,i){ return '<span class="sf-word" style="animat
 h.classList.add('scroll-fall'); observer.observe(h);
 });
 setTimeout(function(){ document.querySelectorAll('.scroll-fall').forEach(function(h){ h.classList.add('in-view'); }); },2500);
+setTimeout(function(){ document.querySelectorAll('.sf-word').forEach(function(s){ s.style.opacity='1'; s.style.transform='none'; }); document.querySelectorAll('.fall-word').forEach(function(s){ s.style.opacity='1'; s.style.transform='none'; }); },2000);
 }catch(err){ document.querySelectorAll('h2').forEach(function(h){ h.style.opacity='1'; }); }
 })();window.addEventListener('load',function(){if(!localStorage.getItem('popupShown')){setTimeout(()=>{let p=document.getElementById('callPopup');if(p)p.classList.add('show')},7000);}});</script></body></html>
