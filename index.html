@@ -83,4 +83,91 @@ if(!isHomePage){
 document.getElementById('sec1Title').innerText = brand+" Chimney Servicing in "+area+", Ghaziabad";
 document.getElementById('sec1Para').innerText = "Does your "+brand+" chimney at home in "+area+" not pull smoke properly? Oil and spices from daily cooking clog the chimney filters, which puts load on the motor and the chimney starts making loud noise. Our expert technicians provide same-day doorstep service in "+area+" and nearby pin code "+pinCode+". We deep clean the complete chimney with chemicals so its suction power becomes like new. "+TECH[brand];
 document.getElementById('sec2Title').innerText = "Common Issues We Fix for "+brand+" Chimneys";
-document.getElementById('sec2Para').innerText = "As an independent service provider, we fix all types of problems for "+brand+" all models at home: Suction Problem: Low suction due to grease jam in filters. Motor Noise Fix: Loud noise due to blower or motor fault. Dead Repair: Chimney not starting due to short circuit in touch panel or PCB. We use only genuine spare parts and every motor or repair
+document.getElementById('sec2Para').innerText = "As an independent service provider, we fix all types of problems for "+brand+" all models at home: Suction Problem: Low suction due to grease jam in filters. Motor Noise Fix: Loud noise due to blower or motor fault. Dead Repair: Chimney not starting due to short circuit in touch panel or PCB. We use only genuine spare parts and every motor or repair job comes with 90-days warranty. If your chimney is making very loud noise, our experts will fix it in just 30 minutes with genuine parts. "+TECH[brand];
+document.getElementById('sec3Title').innerText = "Why Choose Our Doorstep Service in "+area+", Ghaziabad?";
+document.getElementById('sec3Para').innerText = "When you call or WhatsApp us on 8796284796, we send an expert to your doorstep in "+area+" within just 30 minutes. "+LOCAL[area]||LOCAL[area.replace(/ /g,'')]||"We cover all societies in "+area+". "+" "+UNIQUE_AREA[area]||""+" Please note, we are an independent expert team and not an authorized center of any brand, so our fees are very affordable compared to market.";
+}
+let areaSeoBox=document.getElementById('areaSeoBox');
+if(areaSeoBox){
+let txt="";
+if(isHomePage){
+txt="We provide chimney service in all 10 areas of Ghaziabad - Indirapuram 201014, Vaishali 201010, Vasundhara 201012, Kaushambi 201010, Raj Nagar Extension 201017, Crossing Republik 201016, Sahibabad 201005, Shalimar Garden 201005, Kavi Nagar 201002, Raj Nagar 201002. All brands - Hafele, Faber, Elica, Siemens, Glen, Hindware, Sunflame, Kaff, Cata, Inalsa.";
+}else{
+txt=LOCAL[area]||"Doorstep service in "+area+" "+pinCode+". ";
+txt+=" "+(UNIQUE_AREA[area]||"")+" "+(TECH[brand]||"")+" "+(UNIQUE_BRAND[brand]||"");
+}
+areaSeoBox.innerText=txt;
+}
+let faqBox=document.getElementById('faqBox');
+if(faqBox){
+let faqs=[
+{ q:`How much time for ${brand} chimney service in ${area}?`, a:`For ${brand} chimney in ${area} ${pinCode}, deep cleaning takes about 1 hour 15 minutes. Basic service takes 60 minutes. Our technician arrives within 30 minutes doorstep in ${area}.`},
+{ q:`Do you provide ${brand} chimney repair in ${area} ${pinCode}?`, a:`Yes, we provide ${brand} chimney repair in ${area} near ${landmark}. ${TECH[brand]||""} We fix suction, motor noise, PCB and auto-clean issues with 90-day warranty.`},
+{ q:`Is your service authorized for ${brand}?`, a:`We are independent service provider, not authorized center of ${brand}. We provide third-party expert service for ${brand} in ${area} with genuine parts and 30-min visit.`},
+{ q:`What areas you cover in Ghaziabad?`, a:`We cover all 10 areas - Indirapuram, Vaishali, Vasundhara, Kaushambi, Raj Nagar Extension, Crossing Republik, Sahibabad, Shalimar Garden, Kavi Nagar, Raj Nagar. Same day service in ${area} ${pinCode}.`}
+];
+faqBox.innerHTML=faqs.map(f=>`<div class="faq-item"><b>Q: ${f.q}</b><p>A: ${f.a}</p></div>`).join('');
+}
+let relatedWrap=document.getElementById('relatedWrap');
+let relatedLinks=document.getElementById('relatedLinks');
+if(relatedWrap && relatedLinks &&!isHomePage){
+let otherBrands=["hafele","faber","elica","siemens","glen","hindware","sunflame","kaff","cata","inalsa"].filter(b=>b!==rawBrand).slice(0,4);
+relatedWrap.style.display='block';
+relatedLinks.innerHTML=otherBrands.map(b=>`<a href="/${b}-chimney-service-in-${rawArea}-ghaziabad-${pinCode}-cleaning-near-me/">${b.charAt(0).toUpperCase()+b.slice(1)} in ${area}<br><small>${pinCode}</small></a>`).join('') + `<a href="/${rawBrand}-chimney-service-in-indirapuram-ghaziabad-201014-cleaning-near-me/">${brand} in Indirapuram<br><small>201014</small></a><a href="/${rawBrand}-chimney-service-in-vaishali-ghaziabad-201010-cleaning-near-me/">${brand} in Vaishali<br><small>201010</small></a>`;
+}
+let ro=document.getElementById('heroRotator');
+if(ro){
+let msgs=isHomePage?["10 Areas Covered in Ghaziabad","All Brands - Hafele, Faber, Elica...","30 Min Visit - Doorstep","90 Day Warranty on Service"]:[`${brand} Expert in ${area} ${pinCode}`,`30 Min Visit in ${area}`,`Near ${landmark}`,`90 Day Warranty`];
+let mi=0;ro.innerText=msgs[0];setInterval(()=>{mi=(mi+1)%msgs.length;ro.style.opacity='0';setTimeout(()=>{ro.innerText=msgs[mi];ro.style.opacity='1'},200)},3000);
+}
+let slides=document.querySelectorAll('.hero-slides img');
+let dots=document.querySelectorAll('.dot');
+let si=0;
+if(slides.length){
+setInterval(()=>{
+slides[si].classList.remove('active');
+if(dots[si])dots[si].classList.remove('active');
+si=(si+1)%slides.length;
+slides[si].classList.add('active');
+if(dots[si])dots[si].classList.add('active');
+},3000);
+}
+let fc=document.getElementById('floatCall');
+window.addEventListener('scroll',()=>{
+if(window.scrollY>400){if(fc){fc.style.opacity='1';fc.style.pointerEvents='auto';}}else{if(fc){fc.style.opacity='0';fc.style.pointerEvents='none';}}
+});
+if(!localStorage.getItem('popupShown')){
+setTimeout(()=>{let p=document.getElementById('callPopup');if(p)p.classList.add('show');},15000);
+}
+})();
+</script>
+<script type="application/ld+json" id="dynamicSchema"></script>
+<script>
+(function(){
+const areaMap={"indirapuram":"Indirapuram","vaishali":"Vaishali","vasundhara":"Vasundhara","kaushambi":"Kaushambi","raj-nagar-extension":"Raj Nagar Extension","crossing-republik":"Crossing Republik","sahibabad":"Sahibabad","shalimar-garden":"Shalimar Garden","kavi-nagar":"Kavi Nagar","raj-nagar":"Raj Nagar"};
+let fullPath=location.pathname.toLowerCase();
+let path=fullPath.replace(/\/$/,'').split('/').pop()||"";
+let isHomePage=(fullPath==="/"||fullPath==="/index.html"||path==""||path=="index.html");
+let m=path.match(/^([a-z]+)-chimney-service-in-(.+?)-ghaziabad-(\d+)-cleaning-near-me$/);
+let rawBrand,rawArea,area,brand,pinCode;
+if(isHomePage){rawBrand="generic";rawArea="ghaziabad";brand="Chimney";area="Ghaziabad";pinCode="2010";}
+else{if(!m){rawBrand="generic";rawArea="ghaziabad";}else{rawBrand=m[1];rawArea=m[2];pinCode=m[3];}brand=rawBrand.charAt(0).toUpperCase()+rawBrand.slice(1);if(rawBrand==="generic")brand="Chimney";area=areaMap[rawArea]||rawArea.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());}
+let schema={
+"@context":"https://schema.org",
+"@type":"LocalBusiness",
+"name":brand+" Chimney Service in "+area,
+"description":brand+" Chimney Service in "+area+" Ghaziabad "+pinCode+" - Repair, Cleaning & Installation - 30 Min Arrival",
+"url":"https://chimneyservice.vercel.app"+location.pathname,
+"telephone":"+91-8796284796",
+"priceRange":"₹",
+"address":{"@type":"PostalAddress","addressLocality":area,"addressRegion":"Ghaziabad","postalCode":pinCode||"201014","addressCountry":"IN"},
+"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":"335"},
+"review":[
+{"@type":"Review","author":{"@type":"Person","name":"Amit Sharma"},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"We had suction issue in our Elica chimney. Technician did chemical cleaning immediately. Service is very good."},
+{"@type":"Review","author":{"@type":"Person","name":"Priya Verma"},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Our chimney was making loud noise, expert came in 30 minutes and repaired motor. Got 90 day warranty also."}
+]
+};
+document.getElementById('dynamicSchema').textContent=JSON.stringify(schema);
+})();
+</script>
+</body></html>
